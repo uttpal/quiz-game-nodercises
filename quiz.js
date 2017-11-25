@@ -23,7 +23,7 @@ const csvFileSteam = fs.readFileSync(csvFilePath); // Using Syncronous api of fs
   let correctCount = 0;
   //Start The timer
   setTimeout(() => {
-    console.log('you Solved', correctCount);
+    console.log(`Congratualations! you Solved ${correctCount} out of ${problems.length} questions`);
     process.exit(0);
   }, timeLimit);
   for (const index in problems) {
@@ -34,8 +34,8 @@ const csvFileSteam = fs.readFileSync(csvFilePath); // Using Syncronous api of fs
       if(userAnswer === answer)  correctCount+=1;
     }
   }
-  return correctCount;
-})(rl, timeLimit).then((correctCount) => {
-  console.log('you Solved', correctCount);
+  return {correctCount, total: problems.length};
+})(rl, timeLimit).then(({correctCount, total}) => {
+  console.log(`Congratualations! you Solved ${correctCount} out of ${total} questions`);
   process.exit(0);
 });
