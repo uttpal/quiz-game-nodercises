@@ -1,11 +1,13 @@
++++
+date = "2017-11-24T17:48:35+05:30"
+draft = true
+title = "Quiz Game Node.js - Nodercises"
+
++++
+
 # Intoduction
 This is a Node.js Port of popular [Gophercises](https://gophercises.com/exercises/quiz) quiz game exercise.
 
-# Usage
-```
-npm install
-node quiz.js --timer=2
-```
 # Exercise : Quiz Game
 
 ## Exercise details
@@ -59,7 +61,7 @@ Lets break our problem into multiple parts and try to solve each one by one.
 ### Parse Cli options
 To parse the command line parameters we will be using simple module called [minimist](https://github.com/substack/minimist). Its leally simple to use we will jsut pass all the command line argument to it and it will return us object with key value pairs after parsing.
 
-```
+```javascript
 const argv = require('minimist')(process.argv.slice(2));
 
 const timeLimit = (argv.timer || 30) * 1000; // *1000 convert to ms
@@ -75,15 +77,15 @@ To parse csv files we will be using node module called [csv-parse](https://www.n
 
 Csv-parse does not have a promise based api, to make it easier to work with we will promisify it using `promisify` function from utils module which is available since node 8.
 
-```
+```javascript
 const {promisify} = require('util');
 const parse =  promisify(require('csv-parse'));
 ```
 
 Now we can parse the csv using this parse function, it takes 2 argumenst 1st is the csv data 2nd is the options (this will be empty in our case as we do not need any changes).
 
-```
-const csvFileData = fs.readFileSync(csvFilePath); // Read the csv file 
+```javascript
+const csvFileData = fs.readFileSync(csvFilePath); // Read the csv file
 const problems = await parse(csvFileSteam, {});
 ```
 
@@ -92,7 +94,7 @@ const problems = await parse(csvFileSteam, {});
 Reading input is little diffrent in node.js than other languages, we will be using builtin module called `readline` in which first need to specify the input and output and create interface to interact with them.
 The api of readline interface to scan input is event based and to make it easier to use we will convert it to promise based api.
 
-```
+```javascript
 const readline = require('readline');
 
 const rl = readline.createInterface({
@@ -103,7 +105,7 @@ const rl = readline.createInterface({
 const terminalInput = (question) => new Promise((resolve) => {
     rl.question(question, resolve);
   });
- 
+
 ```
 
 You can notice that we promisified csv-parse function using `romisify` but here we are not using it, the reason is because `promisify` only supports standard callback function i.e function which has this format `(err,result)`, but  our `readline.question` function's callback just takes one argument thas why we promisified it with using the native promise class.
@@ -113,7 +115,7 @@ You can notice that we promisified csv-parse function using `romisify` but here 
 Implementing Timeout feature is easy in JS using in-built `setTimeout` function,
 its simple and straightforward. When we reacht he timeout we must print the result and exit.
 
-```
+```javascript
 setTimeout(() => {
     console.log(`Congratualations! you Solved ${correctCount} out of ${problems.length} questions`);
     process.exit(0);
@@ -127,7 +129,7 @@ As we have already solved all the diffrent parts of excercise we just need to bi
 
 Here is the complete code and [github repository](https://github.com/uttpal/quiz-game-nodercises)
 
-```
+```javascript
 
 const fs = require('fs');
 const readline = require('readline');
@@ -173,4 +175,3 @@ const terminalInput = (question) => new Promise((resolve) => {
 ```
 
 Thank You for reading!
-
