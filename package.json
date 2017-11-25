@@ -1,0 +1,23 @@
+{
+  "name": "quiz-game-nodercises",
+  "version": "1.0.0",
+  "description": "",
+  "main": "quiz.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uttpal/quiz-game-nodercises.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/uttpal/quiz-game-nodercises/issues"
+  },
+  "homepage": "https://github.com/uttpal/quiz-game-nodercises#readme",
+  "dependencies": {
+    "csv-parse": "^2.0.0",
+    "minimist": "^1.2.0"
+  }
+}
