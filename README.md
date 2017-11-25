@@ -1,10 +1,3 @@
-+++
-date = "2017-11-24T17:48:35+05:30"
-draft = true
-title = "Quiz Game Node.js - Nodercises"
-
-+++
-
 # Intoduction
 This is a Node.js Port of popular [Gophercises](https://gophercises.com/exercises/quiz) quiz game exercise.
 
